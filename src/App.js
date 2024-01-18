@@ -19,7 +19,10 @@ function App() {
 
   useEffect(
     () => {
-      fetch("https://plankton-app-4ozva.ondigitalocean.app/api_rent_cars").then(
+      fetch("https://plankton-app-4ozva.ondigitalocean.app/api_rent_cars", {
+        method: 'GET',
+        mode: 'no-cors'
+      }).then(
         res => res.json().then(
           data => {
             console.log(data);
