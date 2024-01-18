@@ -19,7 +19,7 @@ function App() {
 
   useEffect(
     () => {
-      fetch("/api_rent_cars").then(
+      fetch("https://plankton-app-4ozva.ondigitalocean.app/api_rent_cars").then(
         res => res.json().then(
           data => {
             console.log(data);
