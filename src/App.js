@@ -23,20 +23,18 @@ function App() {
         const response = await fetch("https://plankton-app-4ozva.ondigitalocean.app/api_rent_cars", {
           method: 'GET',
         });
-  
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
-  
+
         const data = await response.json();
-        console.log(data);
         setData(data);
-  
+
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     };
-  
+
     fetchData();
     document.title = `Resorter - Car Rent`;
   }, []);
@@ -64,18 +62,42 @@ function App() {
     setPickup(pickup);
   }
   const handleSelectDropOff = (dropoff) => {
-    setPickup(dropoff);
+    setDropoff(dropoff);
   }
 
+  const [gear, setGearbox] = useState();
+
+  const handleOnFilterChange = (gearbox, drive, engine, carTypes) => {
+    setGearbox(gearbox)
+    console.log(gearbox);
+    console.log(drive);
+    console.log(engine);
+  };
+
+
+  const filterCars = (car) => {
+    return true;
+  };
 
   return (
     <>
       <Header />
-      <Filter onDatePick={handlePrice} onSelectPickUp={handleSelectPickUp} onSelectDropOff={handleSelectDropOff} />
+      <Filter onDatePick={handlePrice} onSelectPickUp={handleSelectPickUp} onSelectDropOff={handleSelectDropOff} onFilterChange={handleOnFilterChange} />
       <Container style={{ marginBottom: "100px", paddingLeft: "35px", paddingRight: "25px" }}>
         <Row xs={1} md={2} lg={4}>
           {data.map((car, i) => (
-            <Col key={i} style={colStyle}><CarCard data={car} rentDays={rentDays} pickup={pickup} dropoff={dropoff} startdate={startdate} enddate={enddate} /></Col>
+            filterCars(car) && (
+              <Col key={i} style={colStyle}>
+                <CarCard
+                  data={car}
+                  rentDays={rentDays}
+                  pickup={pickup}
+                  dropoff={dropoff}
+                  startdate={startdate}
+                  enddate={enddate}
+                />
+              </Col>
+            )
           ))}
         </Row>
       </Container>

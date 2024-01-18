@@ -1,4 +1,5 @@
 import { Modal, Container, Row, Col } from "react-bootstrap";
+import "../style.css";
 
 function BookingModal({data}) {
     return (

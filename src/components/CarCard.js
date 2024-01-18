@@ -33,11 +33,11 @@ function CarCard({ data, rentDays, pickup, dropoff, startdate, enddate}) {
         </div>
         <Card.Body>
           <Card.Title>{data.name}</Card.Title>
+          <Card.Text style={{ fontSize: "15px", color: "gray" }}>{data.specs.gearbox}, {data.specs.engine}, {data.car_type}</Card.Text>
           <div style={{ display: "flex", justifyContent: "space-between" }}>
             <Card.Text style={{ fontFamily: "Arial" }} >${data.rent_price * rentDays}</Card.Text>
             <Card.Text style={{ fontSize: "15px", fontFamily: "Arial", fontWeight: "550" }}>${data.rent_price} a day</Card.Text>
           </div>
-          <Card.Text style={{ fontSize: "15px", color: "gray" }}>{data.specs.gearbox}, {data.specs.engine}, {data.car_type}</Card.Text>
         </Card.Body>
       </Card>
       <CarModal data={newData} show={show} setShow={setShow} />

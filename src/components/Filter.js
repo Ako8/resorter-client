@@ -5,14 +5,14 @@ import Select from 'react-select';
 import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
-function Filter({ onDatePick, onSelectPickUp, onSelectDropOff }) {
+function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange }) {
 
     const today = new Date();
     const startDate = new Date(today);
-    startDate.setDate(today.getDate() + 2); 
+    startDate.setDate(today.getDate() + 2);
 
     const endDate = new Date(today);
-    endDate.setDate(today.getDate() + 15); 
+    endDate.setDate(today.getDate() + 15);
 
     const [selectionRange, setSelectionRange] = useState({
         startDate: startDate,
@@ -63,7 +63,86 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff }) {
         flexGrow: '0'
     }
 
+    // car filters ######################################################
+
+    const carTypeOptions = [
+        { id: 'sedan', label: 'Sedan' },
+        { id: 'jeep', label: 'Jeep' },
+        { id: 'hetchback', label: 'Hatchback' },
+        { id: 'minivan', label: 'Minivan' },
+        { id: 'cupe', label: 'Coupe' },
+        { id: 'pickup', label: 'Pickup' },
+    ];
+
+    const driveOptions = [
+        { id: 'fw', label: 'Front Wheel' },
+        { id: 'rw', label: 'Rear Wheel' },
+        { id: '4w', label: '4 Wheel' },
+    ];
+
+    const gearBoxOptions = [
+        { id: 'any', label: 'Any' },
+        { id: 'manual', label: 'Manual' },
+        { id: 'automatic', label: 'Automatic' },
+    ];
+
+    const engineOptions = [
+        { id: 'diesel', label: 'Diesel' },
+        { id: 'gasoline', label: 'Gasoline' },
+        { id: 'electro/hybrid', label: 'Electro/Hybrid' },
+    ];
+
+    const [gearbox, setGearbox] = useState('any');
+    const [engine, setEngine] = useState();
+    const [drive, setDrive] = useState();
+
+    const [carTypes, setCarTypes] = useState({
+        sedan: false,
+        jeep: false,
+        hetchback: false,
+        minivan: false,
+        cupe: false,
+        pickup: false,
+    });
+
+    const handleGearboxChange = (arg) => {
+        setGearbox(arg);
+    };
+
+
+    const handleEngineChange = (arg) => {
+        setEngine(arg);
+    };
+
+    const handleDriveChange = (arg) => {
+        setDrive(arg);
+
+    };
+
+    const handleCarTypesChange = (id) => {
+        setCarTypes((prevCarTypes) => ({
+            ...prevCarTypes,
+            [id]: !prevCarTypes[id],
+        }));
+    };
+
+    const handleResetFilter = () => {
+        setGearbox("any");
+        setDrive();
+        setEngine();
+        setCarTypes({
+            sedan: false,
+            jeep: false,
+            hetchback: false,
+            minivan: false,
+            cupe: false,
+            pickup: false,
+        });
+    }
+
     onDatePick(selectionRange.startDate.toLocaleDateString('en-GB'), selectionRange.endDate.toLocaleDateString('en-GB'))
+
+    onFilterChange(gearbox, drive, engine, carTypes);
 
     return (
         <Container className="mb-5">
@@ -78,7 +157,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff }) {
                         }}
                         className='filter-car-button'
                     >
-                        <Select options={options} onChange={onSelectPickUp} placeholder="Pick-up" />
+                        <Select options={options} onChange={onSelectPickUp} isSearchable={false} placeholder="Pick-up" />
                     </Col>
                     <Col
                         style={{
@@ -89,7 +168,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff }) {
                         }}
                         className='filter-car-button'
                     >
-                        <Select options={options} onChange={onSelectDropOff} placeholder="Drop-off" />
+                        <Select options={options} onChange={onSelectDropOff} isSearchable={false} placeholder="Drop-off" />
                     </Col>
                 </Row>
                 <button className='filter-car-button' onClick={toggleDropdown}>Filter Cars</button>
@@ -107,87 +186,77 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff }) {
                                 <div>
                                     <span>Gear box</span>
                                     <div className="new">
-                                        <div className="form-group">
-                                            <input type="radio" id="any" name='gearbox' />
-                                            <label className='radio-label' htmlFor="any">Any</label>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="radio" id="manual" name='gearbox' />
-                                            <label className='radio-label' htmlFor="manual">Manual</label>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="radio" id="automatic" name='gearbox' />
-                                            <label className='radio-label' htmlFor="automatic">Automatic</label>
-                                        </div>
+                                        {gearBoxOptions.map((gear) => (
+                                            <div key={gear.id} className="form-group">
+                                                <input
+                                                    name="gearbox"
+                                                    type="radio"
+                                                    id={gear.id}
+                                                    checked={gearbox === gear.id}
+                                                    onChange={() => handleGearboxChange(gear.id)}
+                                                />
+                                                <label className='radio-label' htmlFor={gear.id}>{gear.label}</label>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                                 <div>
                                     <span>Engine</span>
                                     <div className="new">
-                                        <div className="form-group">
-                                            <input type="checkbox" id="gasoline" />
-                                            <label htmlFor="gasoline">Gasoline</label>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="checkbox" id="diesel" />
-                                            <label htmlFor="diesel">Diesel</label>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="checkbox" id="electrohybrid" />
-                                            <label htmlFor="electrohybrid">Electro/Hybrid</label>
-                                        </div>
+                                        {engineOptions.map((eng) => (
+                                            <div key={eng.id} className="form-group">
+                                                <input
+                                                    name="engine"
+                                                    type="radio"
+                                                    id={eng.id}
+                                                    checked={engine === eng.id}
+                                                    onChange={() => handleEngineChange(eng.id)}
+                                                />
+                                                <label className='radio-label' htmlFor={eng.id}>{eng.label}</label>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                                 <div>
                                     <span>Drive</span>
                                     <div className="new">
-                                        <div className="form-group">
-                                            <input type="checkbox" id="fw" />
-                                            <label htmlFor="fw">Front wheel</label>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="checkbox" id="rw" />
-                                            <label htmlFor="rw">Rear wheel</label>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="checkbox" id="fourw" />
-                                            <label htmlFor="fourw">4 wheel </label>
-                                        </div>
+                                        {driveOptions.map((driv) => (
+                                            <div key={driv.id} className="form-group">
+                                                <input
+                                                    name="drive"
+                                                    type="radio"
+                                                    id={driv.id}
+                                                    checked={drive === driv.id}
+                                                    onChange={() => handleDriveChange(driv.id)}
+                                                />
+                                                <label className='radio-label' htmlFor={driv.id}>{driv.label}</label>
+                                            </div>
+                                        ))}
                                     </div>
                                 </div>
                                 <div>
-                                    <span>Car Types</span>
+                                    <span>Car Type</span>
                                     <div className="new">
-                                        <div className="form-group">
-                                            <input type="checkbox" id="sedan" />
-                                            <label htmlFor="sedan">Sedan</label>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="checkbox" id="jeep" />
-                                            <label htmlFor="jeep">Jeep</label>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="checkbox" id="hetchback" />
-                                            <label htmlFor="hetchback">Hetchback</label>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="checkbox" id="minivan" />
-                                            <label htmlFor="minivan">Minivan</label>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="checkbox" id="cupe" />
-                                            <label htmlFor="cupe">Cupe</label>
-                                        </div>
-                                        <div className="form-group">
-                                            <input type="checkbox" id="pickup" />
-                                            <label htmlFor="pickup">Pickup</label>
-                                        </div>
+                                        {carTypeOptions.map((carType) => (
+                                            <div key={carType.id} className="form-group">
+                                                <input
+                                                    type="checkbox"
+                                                    id={carType.id}
+                                                    checked={carTypes[carType.id]}
+                                                    onChange={() => handleCarTypesChange(carType.id)}
+                                                />
+                                                <label htmlFor={carType.id}>{carType.label}</label>
+                                            </div>
+                                        ))}
                                     </div>
-                                </div>
-
+                                </div>;
                             </Col>
+
                         </Row>
-                        <Button variant='outline' onClick={toggleDropdown} style={{ marginLeft: "20px", marginBottom: "20px", backgroundColor: "white", borderRadius: "0", boxShadow: "1px 1px 1px" }} >Close</Button>
+                        <div style={{ display: "flex", justifyContent: "right", paddingRight: "20px" }}>
+                            <Button className='reset-filter-button' variant='outline' onClick={handleResetFilter} style={{ marginTop: "9px", marginLeft: "20px", marginBottom: "20px", backgroundColor: "white", borderRadius: "0", boxShadow: "1px 1px 1px" }} >Reset Filters</Button>
+                            <Button className="close-filter-button" variant='outline' onClick={toggleDropdown} style={{ marginTop: "9px", marginLeft: "20px", marginBottom: "20px", backgroundColor: "white", borderRadius: "0", boxShadow: "1px 1px 1px" }} >Close</Button>
+                        </div>
                     </div>
                 )}
             </div>
