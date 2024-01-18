@@ -17,21 +17,29 @@ function App() {
 
   const [data, setData] = useState([{}])
 
-  useEffect(
-    () => {
-      fetch("https://plankton-app-4ozva.ondigitalocean.app/api_rent_cars", {
-        method: 'GET',
-        mode: 'no-cors'
-      }).then(
-        res => res.json().then(
-          data => {
-            console.log(data);
-            setData(data);
-          })
-      );
-      document.title = `Resorter - Car Rent`;
-
-    }, []);
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://plankton-app-4ozva.ondigitalocean.app/api_rent_cars", {
+          method: 'GET',
+        });
+  
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+  
+        const data = await response.json();
+        console.log(data);
+        setData(data);
+  
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+  
+    fetchData();
+    document.title = `Resorter - Car Rent`;
+  }, []);
 
   const [rentDays, setRentDays] = useState(0);
   const [startdate, setStartdate] = useState();
@@ -63,11 +71,11 @@ function App() {
   return (
     <>
       <Header />
-      <Filter onDatePick={handlePrice} onSelectPickUp={handleSelectPickUp} onSelectDropOff={handleSelectDropOff}/>
+      <Filter onDatePick={handlePrice} onSelectPickUp={handleSelectPickUp} onSelectDropOff={handleSelectDropOff} />
       <Container style={{ marginBottom: "100px", paddingLeft: "35px", paddingRight: "25px" }}>
         <Row xs={1} md={2} lg={4}>
           {data.map((car, i) => (
-            <Col key={i} style={colStyle}><CarCard data={car} rentDays={rentDays} pickup={pickup} dropoff={dropoff} startdate={startdate} enddate={enddate}/></Col>
+            <Col key={i} style={colStyle}><CarCard data={car} rentDays={rentDays} pickup={pickup} dropoff={dropoff} startdate={startdate} enddate={enddate} /></Col>
           ))}
         </Row>
       </Container>
