@@ -1,0 +1,142 @@
+@font-face {
+    font-family: 'Asomtavruli';
+    src: url('./fonts/bpg_nino_mtavruli_bold.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
+  
+  body {
+    font-family: 'Asomtavruli', sans-serif;
+  }
+
+  .rdrDefinedRangesWrapper {
+    display: none;
+  }
+
+  .filter-car-button{
+    width: 100%;
+    background-color: rgba(134,234,238,0.9)  ;
+    color: Black;
+    border: 0;
+    padding: 10px;
+    font-size: 20px;
+    margin: 5px;
+    padding: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+
+
+
+  }
+
+  .filter-car-button:hover {
+    background-color: rgb(20, 181, 239);
+    color: Black;
+    
+  }
+
+
+/* Filter checkboxes for car rent page */
+
+.form-group {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  padding: 0;
+  height: initial;
+  width: initial;
+  margin-bottom: 0;
+  display: none;
+  cursor: pointer;
+}
+
+.form-group label {
+  position: relative;
+  cursor: pointer;
+}
+
+.form-group label:before {
+  content:'';
+  background-color: transparent;
+  border: 2px solid #0079bf;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px rgba(0, 0, 0, 0.05);
+  padding: 10px;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.radio-label::before {
+  border-radius: 50%;
+}
+
+.form-group input:checked + label:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 2px;
+  left: 9px;
+  width: 6px;
+  height: 14px;
+  border: solid #0079bf;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.css-13cymwt-control {
+  cursor: pointer!important;
+}
+
+/* !! Filter checkboxes on car rent page */
+
+
+/* Card animation */
+.img-container {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.img-container:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.custom-card {
+  overflow: hidden;
+  border-radius: 0px;
+  margin: 1px; 
+  cursor: pointer;
+
+}
+
+/*!! Card animation */
+
+/* Car Modal */
+
+.continue-to-book-button {
+  width: 100%;
+  border-radius: 0;
+}
+
+.custom-modal-overlay {
+  background-color: rgba(78, 201, 215, 0.2);
+}
+.modal-content {
+  border-radius: 0;
+}
+
+.see-more:hover {
+  color: rgb(199, 120, 47)!important;
+}
+
+/*!! Car Modal */
