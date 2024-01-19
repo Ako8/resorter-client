@@ -158,8 +158,6 @@ html::-webkit-scrollbar-track:hover {
 .img-container {
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
-  padding-left: 20px;
-  padding-right: 20px;
 }
 
 .img-container:hover {

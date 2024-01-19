@@ -145,7 +145,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
     return (
         <Container className="mb-5">
             <div style={{ borderRadius: "5px", width: '100%', marginTop: '20px' }}>
-                <Row style={{ paddingLeft: '15px', paddingRight: '5px' }}>
+                <Row style={{ paddingLeft: '10px', paddingRight: '10px' }}>
                     <Col
                         style={{
                             borderBottomRightRadius: '0px',
@@ -169,7 +169,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
                         <Select options={options} onChange={onSelectDropOff} isSearchable={false} placeholder="Drop-off" />
                     </Col>
                 </Row>
-                <button className='filter-car-button' onClick={toggleDropdown}>Filter Cars</button>
+                <button className='filter-car-button' style={{ marginLeft:"0" }} onClick={toggleDropdown}>Filter Cars</button>
                 {isDropdownOpen && (
                     <div style={{ marginTop: "20px", backgroundColor: "#eee" }}>
                         <Row>
@@ -182,7 +182,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
                             </Col>
                             <Col style={{ display: 'flex', justifyContent: "space-evenly", gap: "3rem", flexWrap: "wrap", marginTop: "30px" }}>
                                 <div>
-                                    <span>Gear box</span>
+                                    <p>Gear box</p>
                                     <div className="new">
                                         {gearBoxOptions.map((gear) => (
                                             <div key={gear.id} className="form-group">
@@ -199,7 +199,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
                                     </div>
                                 </div>
                                 <div>
-                                    <span>Engine</span>
+                                    <p>Engine</p>
                                     <div className="new">
                                         {engineOptions.map((eng) => (
                                             <div key={eng.id} className="form-group">
@@ -216,7 +216,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
                                     </div>
                                 </div>
                                 <div>
-                                    <span>Drive</span>
+                                    <p>Drive</p>
                                     <div className="new">
                                         {driveOptions.map((driv) => (
                                             <div key={driv.id} className="form-group">
@@ -233,7 +233,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
                                     </div>
                                 </div>
                                 <div>
-                                    <span>Car Type</span>
+                                    <p>Car Type</p>
                                     <div className="new">
                                         {carTypeOptions.map((carType) => (
                                             <div key={carType.id} className="form-group">
