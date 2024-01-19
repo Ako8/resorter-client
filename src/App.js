@@ -39,6 +39,8 @@ function App() {
     document.title = `Resorter - Car Rent`;
   }, []);
 
+
+
   const [rentDays, setRentDays] = useState(0);
   const [startdate, setStartdate] = useState();
   const [enddate, setEnddate] = useState();
@@ -65,18 +67,39 @@ function App() {
     setDropoff(dropoff);
   }
 
-  const [gear, setGearbox] = useState();
+  const [g, setG] = useState();
+  const [d, setD] = useState();
+  const [e, setE] = useState();
+  const [t, setT] = useState();
 
   const handleOnFilterChange = (gearbox, drive, engine, carTypes) => {
-    setGearbox(gearbox)
-    console.log(gearbox);
-    console.log(drive);
-    console.log(engine);
+    setG(gearbox);
+    setD(drive);
+    setE(engine);
+    setT(carTypes);
+  };
+
+  const carTypesArray = t ? Object.entries(t)
+    .filter(([key, value]) => value === true)
+    .map(([key]) => key) : null;
+
+  const filterCarType = (car) => {
+    if (carTypesArray)
+      return carTypesArray.length === 0 ? true : carTypesArray.includes(car.car_type);
+    return true;  
   };
 
 
-  const filterCars = (car) => {
-    return true;
+  const filterCarData = (car) => {
+    if (!car.specs) {
+      return true;
+    }
+
+    const gearboxCondition = g !== "gany" ? car.specs.gearbox === g : true;
+    const driveCondition = d !== "dany" ? car.specs.drive === d : true;
+    const fuelCondition = e !== "eany" ? car.specs.fuel === e : true;
+
+    return gearboxCondition && driveCondition && fuelCondition;
   };
 
   return (
@@ -86,7 +109,7 @@ function App() {
       <Container style={{ marginBottom: "100px", paddingLeft: "35px", paddingRight: "25px" }}>
         <Row xs={1} md={2} lg={4}>
           {data.map((car, i) => (
-            filterCars(car) && (
+            filterCarData(car) && filterCarType(car) && (
               <Col key={i} style={colStyle}>
                 <CarCard
                   data={car}

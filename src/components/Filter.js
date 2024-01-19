@@ -6,7 +6,6 @@ import 'react-date-range/dist/styles.css';
 import 'react-date-range/dist/theme/default.css';
 
 function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange }) {
-
     const today = new Date();
     const startDate = new Date(today);
     startDate.setDate(today.getDate() + 2);
@@ -62,9 +61,8 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
         marginTop: "15px",
         flexGrow: '0'
     }
-
+    
     // car filters ######################################################
-
     const carTypeOptions = [
         { id: 'sedan', label: 'Sedan' },
         { id: 'jeep', label: 'Jeep' },
@@ -75,26 +73,28 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
     ];
 
     const driveOptions = [
-        { id: 'fw', label: 'Front Wheel' },
-        { id: 'rw', label: 'Rear Wheel' },
+        { id: 'dany', label: 'Any' },
+        { id: 'fwd', label: 'Front Wheel' },
+        { id: 'rwd', label: 'Rear Wheel' },
         { id: '4w', label: '4 Wheel' },
     ];
 
     const gearBoxOptions = [
-        { id: 'any', label: 'Any' },
-        { id: 'manual', label: 'Manual' },
-        { id: 'automatic', label: 'Automatic' },
+        { id: 'gany', label: 'Any' },
+        { id: 'Manual', label: 'Manual' },
+        { id: 'Automatic', label: 'Automatic' },
     ];
 
     const engineOptions = [
+        { id: 'eany', label: 'Any' },
         { id: 'diesel', label: 'Diesel' },
         { id: 'gasoline', label: 'Gasoline' },
-        { id: 'electro/hybrid', label: 'Electro/Hybrid' },
+        { id: 'Hybrid', label: 'Electro/Hybrid' },
     ];
 
-    const [gearbox, setGearbox] = useState('any');
-    const [engine, setEngine] = useState();
-    const [drive, setDrive] = useState();
+    const [gearbox, setGearbox] = useState("gany");
+    const [engine, setEngine] = useState("eany");
+    const [drive, setDrive] = useState("dany");
 
     const [carTypes, setCarTypes] = useState({
         sedan: false,
@@ -108,7 +108,6 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
     const handleGearboxChange = (arg) => {
         setGearbox(arg);
     };
-
 
     const handleEngineChange = (arg) => {
         setEngine(arg);
@@ -127,9 +126,9 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
     };
 
     const handleResetFilter = () => {
-        setGearbox("any");
-        setDrive();
-        setEngine();
+        setGearbox("gany");
+        setDrive("dany");
+        setEngine("eany");
         setCarTypes({
             sedan: false,
             jeep: false,
@@ -141,7 +140,6 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
     }
 
     onDatePick(selectionRange.startDate.toLocaleDateString('en-GB'), selectionRange.endDate.toLocaleDateString('en-GB'))
-
     onFilterChange(gearbox, drive, engine, carTypes);
 
     return (
@@ -249,7 +247,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
                                             </div>
                                         ))}
                                     </div>
-                                </div>;
+                                </div>
                             </Col>
 
                         </Row>

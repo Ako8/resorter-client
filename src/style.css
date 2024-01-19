@@ -86,6 +86,10 @@ html::-webkit-scrollbar-track:hover {
   cursor: pointer;
 }
 
+.form-group label:hover {
+  color: #049cf4;
+}
+
 .form-group label:before {
   content: '';
   background-color: transparent;
