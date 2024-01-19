@@ -106,7 +106,7 @@ function App() {
     <>
       <Header />
       <Filter onDatePick={handlePrice} onSelectPickUp={handleSelectPickUp} onSelectDropOff={handleSelectDropOff} onFilterChange={handleOnFilterChange} />
-      <Container style={{ marginBottom: "100px", paddingLeft: "25 px", paddingRight: "25px" }}>
+      <Container style={{ marginBottom: "100px", paddingLeft: "25px", paddingRight: "25px" }}>
         <Row xs={1} md={2} lg={4}>
           {data.map((car, i) => (
             filterCarData(car) && filterCarType(car) && (

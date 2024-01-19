@@ -156,13 +156,15 @@ html::-webkit-scrollbar-track:hover {
 
 /* Card animation */
 .img-container {
+  padding-left: 10px;
+  padding-right: 10px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
 }
 
 .img-container:hover {
   cursor: pointer;
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 .custom-card {
