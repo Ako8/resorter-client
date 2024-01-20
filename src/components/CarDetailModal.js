@@ -1,8 +1,8 @@
-import { Modal, Container, Row, Col } from "react-bootstrap";
+import { Modal, Container, Row, Col, Button } from "react-bootstrap";
 import { useState } from "react";
 import "../style.css";
 
-function CarDetailModal({ data }) {
+function CarDetailModal({ data, handlePage }) {
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase();
     }
@@ -25,7 +25,6 @@ function CarDetailModal({ data }) {
     const bookingCost = Math.ceil((data.rent_days * data.rent_price) / 100 * 15);
 
     const formatDateRange = (startDateString, endDateString) => {
-        // Assuming date format is "dd/mm/yyyy"
         const [startDay, startMonth, startYear] = startDateString.split('/');
         const [endDay, endMonth, endYear] = endDateString.split('/');
       
@@ -56,6 +55,7 @@ function CarDetailModal({ data }) {
     };
 
     return (
+        <>
         <Modal.Body>
             <h3>{data.name}</h3>
             <Container style={{ borderTop: "1px solid", padding: "10px" }}>
@@ -102,6 +102,12 @@ function CarDetailModal({ data }) {
                 </Row>
             </Container>
         </Modal.Body>
+        <Modal.Footer>
+                    <Button className="continue-to-book-button" variant="primary" onClick={() => handlePage("booking")}>
+                        Continue To Booking
+                    </Button>
+                </Modal.Footer>
+        </>
     );
 }
 

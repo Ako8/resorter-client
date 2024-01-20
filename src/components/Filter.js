@@ -169,7 +169,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
                         <Select options={options} onChange={onSelectDropOff} isSearchable={false} placeholder="Drop-off" />
                     </Col>
                 </Row>
-                <button className='filter-car-button' style={{ marginLeft:"0" }} onClick={toggleDropdown}>Filter Cars</button>
+                <button className='filter-car-button' style={{ marginLeft:"0" }} onClick={toggleDropdown}>Filter cars</button>
                 {isDropdownOpen && (
                     <div style={{ marginTop: "20px", backgroundColor: "#eee" }}>
                         <Row>

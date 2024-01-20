@@ -15,14 +15,17 @@ function CarModal({ show, setShow, data }) {
 
 
     const activeLink = {
-        color: "white",
-        backgroundColor: 'green',
-        padding: "3px",
+        color: "rgb(40, 93, 158)",
+        padding: "5px",
         borderRadius: '5px',
         cursor: "pointer",
+        paddingRight: "0",
+
     }
 
     const nonActiveLink = {
+        padding: "5px",
+        paddingRight: "0",
         color: "lightgray",
         cursor: "pointer",
 
@@ -35,7 +38,6 @@ function CarModal({ show, setShow, data }) {
                 onHide={() => setShow(false)}
                 style={{ fontFamily: "Arial" }}
                 dialogClassName="modal-lg"
-                aria-labelledby="example-custom-modal-styling-title"
                 fullscreen
                 className="custom-modal-overlay"
             >
@@ -48,16 +50,10 @@ function CarModal({ show, setShow, data }) {
                         </p>
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body>
-                    {page === 'details' && <CarDetailModal data={data} />}
-                    {page === 'booking' && <BookingFormModal data={data} />}
+                    {page === 'details' && <CarDetailModal data={data} handlePage={handlePage}/>}
+                    {page === 'booking' && <BookingFormModal data={data} handlePage={handlePage} />}
                     {page === 'payment' && <p>Payment...</p>}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button className="continue-to-book-button" variant="primary" onClick={() => handlePage("booking")}>
-                        Continue To Book
-                    </Button>
-                </Modal.Footer>
+                
             </Modal>
         </>
     );

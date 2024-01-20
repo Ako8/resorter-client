@@ -5,9 +5,12 @@
   font-style: normal;
 }
 
-body {
+/* html, body {
   font-family: 'Asomtavruli', sans-serif;
-}
+} */
+
+
+/* overlay-y */
 
 html {
   scrollbar-width: normal;
@@ -34,6 +37,16 @@ html::-webkit-scrollbar-track:hover {
   background-color: #6cb2c646;
 }
 
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal::-webkit-scrollbar {
+  width: 0;
+}
+
+/* !! overlay-y */
+
 .rdrDefinedRangesWrapper {
   display: none;
 }
@@ -53,9 +66,6 @@ html::-webkit-scrollbar-track:hover {
   padding-bottom: 5px;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-
-
-
 }
 
 .filter-car-button:hover {
@@ -111,7 +121,7 @@ html::-webkit-scrollbar-track:hover {
   content: '';
   display: block;
   position: absolute;
-  top: 2px;
+  top: 5px;
   left: 9px;
   width: 6px;
   height: 14px;
@@ -194,6 +204,10 @@ html::-webkit-scrollbar-track:hover {
 
 .see-more:hover {
   color: rgb(199, 120, 47) !important;
+}
+
+.PhoneInputInput {
+  border:none;
 }
 
 /*!! Car Modal */
