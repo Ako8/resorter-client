@@ -225,7 +225,6 @@ html::-webkit-scrollbar-track:hover {
   background-color: green;
 }
 
-
 .not-rented {
   background-color: #0079bf;
 }
@@ -328,4 +327,8 @@ html::-webkit-scrollbar-track:hover {
   .th-cars {
     min-width: 50px!important;
   }
+}
+
+.today {
+  background-color: rgb(245, 157, 135)!important;
 }

@@ -20,7 +20,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://plankton-app-4ozva.ondigitalocean.app/api_user_rent_cars", {
+        const response = await fetch("http://localhost:5000/api_user_rent_cars", {
           method: 'GET',
         });
         if (!response.ok) {
