@@ -2,6 +2,7 @@ import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
 import CarDetailModal from "./CarDetailModal";
 import BookingFormModal from "./BookingFormModal";
+import PaymentFormModal from "./PaymentFormModal";
 import "../style.css";
 
 
@@ -52,7 +53,8 @@ function CarModal({ show, setShow, data }) {
                 </Modal.Header>
                     {page === 'details' && <CarDetailModal data={data} handlePage={handlePage}/>}
                     {page === 'booking' && <BookingFormModal data={data} handlePage={handlePage} />}
-                    {page === 'payment' && <p>Payment...</p>}
+                    {page === 'payment' && <PaymentFormModal data={data} handlePage={handlePage} />}
+
                 
             </Modal>
         </>

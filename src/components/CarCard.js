@@ -1,4 +1,4 @@
-import { Card } from 'react-bootstrap';
+import { Card, Spinner } from 'react-bootstrap';
 import '../style.css';
 import CarModal from './CarModal';
 import { useState } from 'react';
@@ -20,10 +20,6 @@ function CarCard({ data, rentDays, pickup, dropoff, startdate, enddate}) {
     enddate: enddate,
   }
 
-
-  if (!data.specs) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <> 

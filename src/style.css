@@ -9,11 +9,21 @@
   font-family: 'Asomtavruli', sans-serif;
 } */
 
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow-x:hidden;
+
+}
+
 
 /* overlay-y */
 
 html {
   scrollbar-width: normal;
+  overflow-x:hidden;
+
 }
 
 html::-webkit-scrollbar {
@@ -207,7 +217,115 @@ html::-webkit-scrollbar-track:hover {
 }
 
 .PhoneInputInput {
-  border:none;
+  border: none;
 }
 
 /*!! Car Modal */
+.rented {
+  background-color: green;
+}
+
+
+.not-rented {
+  background-color: #0079bf;
+}
+
+
+.calendar-container { 
+  overflow-x: auto;
+  
+}
+
+.calendar {
+  font-family: Arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.calendar th, .calendar td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+.calendar th {
+  background-color: #eee;
+}
+
+.day-cell.rented {
+  background-color: green;
+  color: white;
+}
+
+/* Optional: Add hover effect for better user interaction */
+.day-cell.rented:hover {
+  background-color: rgba(0, 128, 0, 0.371);
+}
+.day-cell.not-rented:hover {
+  background-color: #0079bf51;
+}
+
+.day-cell:hover {
+  background-color: #d0e5f2e9;
+}
+
+/* Make the thead sticky */
+.calendar thead {
+  
+  position: sticky;
+  top: 0;
+  background-color: #fff;
+  z-index: 1;
+}
+
+.info-container {
+  padding: 30px;
+  border: 1px solid black;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.image-container {
+  position: relative;
+  margin-bottom: 50px;
+}
+
+.info-container {
+  margin: 10px;
+  margin-left: 100px;
+  margin-right: 100px;
+  border: 1px solid black;
+  border-radius: 50px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: right;
+  gap: 1rem;
+}
+
+.buttons button {
+  background-color: #859093;
+  border: 1px solid black;
+  border-radius: 50px;
+  padding: 10px;
+}
+
+.buttons button:hover {
+  background-color: #2a94d16f;  
+}
+
+@media (max-width: 767px) {
+  Table {
+    font-size: 10px!important;
+  }
+  .th-cars {
+    min-width: 50px!important;
+  }
+}

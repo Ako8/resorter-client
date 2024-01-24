@@ -4,11 +4,31 @@ import Header from "./components/Header";
 import Filter from "./components/Filter";
 import CarCard from "./components/CarCard";
 import Footer from "./components/Footer";
+import LinkNav from "./components/LinkNav"
 import './style.css';
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Spinner } from "react-bootstrap";
 
 
 function App() {
+
+  const [isBigScreen, setIsBigScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsBigScreen(window.innerWidth >= 900);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const contentStyle = {
+    fontSize: isBigScreen ? '15px' : '18px',
+    fontWeight: "400"
+  };
+
 
   const colStyle = {
     paddingLeft: '0px',
@@ -20,7 +40,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://plankton-app-4ozva.ondigitalocean.app/api_rent_cars", {
+        const response = await fetch("http://localhost:5000/api_rent_cars", {
           method: 'GET',
         });
         if (!response.ok) {
@@ -86,7 +106,7 @@ function App() {
   const filterCarType = (car) => {
     if (carTypesArray)
       return carTypesArray.length === 0 ? true : carTypesArray.includes(car.car_type);
-    return true;  
+    return true;
   };
 
 
@@ -102,9 +122,25 @@ function App() {
     return gearboxCondition && driveCondition && fuelCondition;
   };
 
+  if (!data[0].specs) {
+    return (
+      <div className="loading-container">
+        <div className="image-container">
+          <img src={require('./images/logo ai png no bckr.png')} style={{ width: '100px' }} alt="Logo" />
+        </div>
+        <div className="loading">
+          <Spinner animation="border" role="status">
+            <span className="sr-only">Loading...</span>
+          </Spinner>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
-      <Header />
+      <LinkNav />
+      <Header isBigScreen={isBigScreen} />
       <Filter onDatePick={handlePrice} onSelectPickUp={handleSelectPickUp} onSelectDropOff={handleSelectDropOff} onFilterChange={handleOnFilterChange} />
       <Container style={{ marginBottom: "100px", paddingLeft: "25px", paddingRight: "25px" }}>
         <Row xs={1} md={2} lg={4}>

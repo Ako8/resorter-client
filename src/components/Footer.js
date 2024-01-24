@@ -1,11 +1,12 @@
 import React from 'react';
 
+
 function Footer() {
     return (
         <footer
             id="foot"
             className="text-center text-lg-start text-white"
-            style={{ backgroundColor: 'rgb(33, 37, 41)', textAlign: 'left'}}
+            style={{ backgroundColor: 'rgb(33, 37, 41)', textAlign: 'left', flexShrink:"0"}}
         >
             {/* Section: Social media */}
             <section className="d-flex justify-content-between p-2" style={{ backgroundColor: '#0079bf' }}>
