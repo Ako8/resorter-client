@@ -78,6 +78,7 @@ function Calendar({ data, setData }) {
               <td style={{ minWidth: '100%', fontWeight: 'bold', position: 'sticky', left: '0', background: 'white', zIndex: '1' }}>{car.name}</td>
               {car.rent_list.map((day, i) => (
                 <OverlayTrigger
+                  key={i}
                   placement="top"
                   overlay={
                     <Tooltip>

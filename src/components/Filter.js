@@ -22,6 +22,8 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
 
     const handleSelect = (ranges) => {
         setSelectionRange(ranges.selection);
+        onDatePick(selectionRange.startDate.toLocaleDateString('en-GB'), selectionRange.endDate.toLocaleDateString('en-GB'));
+
     };
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -111,10 +113,12 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
 
     const handleEngineChange = (arg) => {
         setEngine(arg);
+
     };
 
     const handleDriveChange = (arg) => {
         setDrive(arg);
+
 
     };
 
@@ -123,6 +127,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
             ...prevCarTypes,
             [id]: !prevCarTypes[id],
         }));
+
     };
 
     const handleResetFilter = () => {
@@ -139,7 +144,6 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
         });
     }
 
-    onDatePick(selectionRange.startDate.toLocaleDateString('en-GB'), selectionRange.endDate.toLocaleDateString('en-GB'))
     onFilterChange(gearbox, drive, engine, carTypes);
 
     return (
