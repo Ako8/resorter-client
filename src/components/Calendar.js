@@ -3,31 +3,7 @@ import "../style.css"
 import { Table, OverlayTrigger, Tooltip, Spinner, Tabs, Tab } from "react-bootstrap";
 
 
-function Calendar() {
-
-    const [data, setData] = useState([{}])
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("http://localhost:5000/api_user_rent_cars", {
-                    method: 'GET',
-                });
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
-
-                const data = await response.json();
-                setData(data);
-
-            } catch (error) {
-                console.error('Error fetching data:', error);
-            }
-        };
-
-        fetchData();
-        document.title = `Resorter - Dashboard`;
-    }, []);
+function Calendar({ data, setData }) {
 
 
     if (!data.calendar_days || !data.rent_days) {
