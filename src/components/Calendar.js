@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import "../style.css"
 import { Table, OverlayTrigger, Tooltip, Spinner, Tabs, Tab } from "react-bootstrap";
+import Icon from "react-crud-icons";
 
 
 function Calendar({ data, setData }) {
@@ -57,7 +58,7 @@ function Calendar({ data, setData }) {
 
   return (
     <div className='calendar-table' style={{ overflowY: 'auto' }}>
-      <Table responsive bordered className="calendar-container" style={{ fontSize: '15px' }}>
+      <Table responsive bordered className="calendar-container" style={{ fontSize: '11px' }}>
         <thead className="calendar">
           <tr>
             <th className='th-cars' style={{ position: 'sticky', left: '0', background: 'white', zIndex: '1', minWidth: "150px" }}>Days:</th>
@@ -75,7 +76,15 @@ function Calendar({ data, setData }) {
         <tbody>
           {data.rent_days.map((car, index) => (
             <tr key={index}>
-              <td style={{ minWidth: '100%', fontWeight: 'bold', position: 'sticky', left: '0', background: 'white', zIndex: '1' }}>{car.name}</td>
+              <td className='car-name' style={{ minWidth: '100%', fontWeight: 'bold', position: 'sticky', left: '0', zIndex: '1' }}>
+              <div style={{ width:"20px", display:"inline-block", marginRight:"7px" }}>
+              <Icon
+                name="edit"
+                className="edit-icon"
+              />
+              </div>
+              {car.name}
+              </td>
               {car.rent_list.map((day, i) => (
                 <OverlayTrigger
                   key={i}

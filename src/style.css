@@ -332,3 +332,15 @@ html::-webkit-scrollbar-track:hover {
 .today {
   background-color: rgb(245, 157, 135)!important;
 }
+
+.edit-icon{
+  cursor: pointer;
+}
+
+.car-name {
+  background: whitesmoke;
+}
+
+.car-name:hover {
+  background: #2a94d16f;
+}

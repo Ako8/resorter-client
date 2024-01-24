@@ -2,7 +2,6 @@
   "name": "client",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://plankton-app-4ozva.ondigitalocean.app/",
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -13,6 +12,7 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.9.2",
     "react-bootstrap-icons": "^1.10.3",
+    "react-crud-icons": "^1.2.3",
     "react-date-range": "^2.0.0-alpha.4",
     "react-dom": "^18.2.0",
     "react-phone-number-input": "^3.3.9",
