@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from "react";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "../components/Header"
 import Filter from "../components/Filter";
 import CarCard from "../components/CarCard";
-import Footer from "../components/Footer";
-import LinkNav from "../components/LinkNav"
-import '../style.css';
 import { Container, Row, Col, Spinner } from "react-bootstrap";
 
 
@@ -40,7 +36,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://plankton-app-4ozva.ondigitalocean.app/api_rent_cars", {
+        const response = await fetch("/rent/cars", {
           method: 'GET',
         });
         if (!response.ok) {
@@ -48,6 +44,7 @@ function App() {
         }
 
         const data = await response.json();
+        console.log(data.cars);
         setData(data);
 
       } catch (error) {
@@ -72,9 +69,10 @@ function App() {
     const endActualDate = new Date(endYear, endMonth - 1, endDay);
     const timeDifference = endActualDate.getTime() - startActualDate.getTime();
     const daysDifference = timeDifference / (1000 * 3600 * 24) + 1;
-  
+    
     setStartdate(startDate);
     setEnddate(endDate);
+    console.log(daysDifference);
     setRentDays(daysDifference);
   };
 
@@ -123,7 +121,9 @@ function App() {
     return gearboxCondition && driveCondition && fuelCondition;
   };
 
-  if (!data[0].specs) {
+  
+
+  if (!data.cars) {
     return (
       <div className="loading-container">
         <div className="image-container">
@@ -144,7 +144,7 @@ function App() {
       <Filter onDatePick={handlePrice} onSelectPickUp={handleSelectPickUp} onSelectDropOff={handleSelectDropOff} onFilterChange={handleOnFilterChange} />
       <Container style={{ marginBottom: "100px", paddingLeft: "25px", paddingRight: "25px" }}>
         <Row xs={1} md={2} lg={4}>
-          {data.map((car, i) => (
+          {data.cars.map((car, i) => (
             filterCarData(car) && filterCarType(car) && (
               <Col key={i} style={colStyle}>
                 <CarCard

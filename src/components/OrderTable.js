@@ -1,5 +1,6 @@
 import { Table } from "react-bootstrap";
-function OrderTable(){
+
+function OrderTable({ data, setData }){
     return(
         <Table responsive>
   <thead>

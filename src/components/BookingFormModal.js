@@ -1,5 +1,4 @@
 import { Form, Col, Row, Button, Modal, Container } from "react-bootstrap";
-import "../style.css";
 import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-number-input'
 import { useState } from "react";

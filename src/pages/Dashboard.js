@@ -2,12 +2,8 @@ import UserInfo from "../components/UserInfo";
 import React, { useState, useEffect } from 'react';
 import Calendar from "../components/Calendar";
 import OrderTable from "../components/OrderTable";
-import { Tab, Tabs, Button } from "react-bootstrap";
+import { Tab, Tabs } from "react-bootstrap";
 import Icon from "react-crud-icons";
-
-
-
-import "../style.css"
 
 
 
@@ -21,7 +17,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("https://plankton-app-4ozva.ondigitalocean.app/api_user_rent_cars", {
+        const response = await fetch("/orders/car", {
           method: 'GET',
         });
         if (!response.ok) {
@@ -29,6 +25,7 @@ function Dashboard() {
         }
 
         const data = await response.json();
+        console.log(data);
         setData(data);
 
       } catch (error) {
@@ -43,11 +40,6 @@ function Dashboard() {
   return (
     <>
       <UserInfo />
-      <div style={{ marginLeft:"30px", marginTop:"20px", width:"20px" }}>
-      <Icon
-        name="edit"
-      />
-      </div>
       <Tabs
         style={{ marginTop:"20px" }}
         id="controlled-tab-example"
@@ -55,10 +47,10 @@ function Dashboard() {
         onSelect={(k) => setKey(k)}
       >
         <Tab eventKey="calendar" title="Calendar">
-          <Calendar data={data} setData={setData}/>
+          <Calendar/>
         </Tab>
         <Tab eventKey="table" title="Table">
-          <OrderTable />
+          <OrderTable/>
         </Tab>
       </Tabs>
     </>

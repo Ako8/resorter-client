@@ -3,7 +3,6 @@ import { useState } from "react";
 import CarDetailModal from "./CarDetailModal";
 import BookingFormModal from "./BookingFormModal";
 import PaymentFormModal from "./PaymentFormModal";
-import "../style.css";
 
 
 function CarModal({ show, setShow, data }) {

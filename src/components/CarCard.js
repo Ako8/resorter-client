@@ -1,5 +1,4 @@
-import { Card, Spinner } from 'react-bootstrap';
-import '../style.css';
+import { Card } from 'react-bootstrap';
 import CarModal from './CarModal';
 import { useState } from 'react';
 
@@ -20,12 +19,11 @@ function CarCard({ data, rentDays, pickup, dropoff, startdate, enddate}) {
     enddate: enddate,
   }
 
-
   return (
     <> 
       <Card onClick={handleShow} variant="primary" className="custom-card" style={{ border: '1px solid' }}>
         <div className="img-container">
-          <Card.Img style={{ padding: "20px" }} variant="top" src={data.image} />
+          <Card.Img style={{ padding: "20px" }} variant="top" src={`data:image/png;base64,${data.images.thumbnail}`} />
         </div>
         <Card.Body>
           <Card.Title>{data.name}</Card.Title>

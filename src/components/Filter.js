@@ -22,8 +22,6 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
 
     const handleSelect = (ranges) => {
         setSelectionRange(ranges.selection);
-        onDatePick(selectionRange.startDate.toLocaleDateString('en-GB'), selectionRange.endDate.toLocaleDateString('en-GB'));
-
     };
 
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -63,7 +61,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
         marginTop: "15px",
         flexGrow: '0'
     }
-    
+
     // car filters ######################################################
     const carTypeOptions = [
         { id: 'sedan', label: 'Sedan' },
@@ -144,7 +142,17 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
         });
     }
 
-    onFilterChange(gearbox, drive, engine, carTypes);
+    useEffect(() => {
+        onDatePick(
+            selectionRange.startDate.toLocaleDateString('en-GB'),
+            selectionRange.endDate.toLocaleDateString('en-GB')
+        );
+    }, [selectionRange, onDatePick]);
+
+    useEffect(() => {
+        onFilterChange(gearbox, drive, engine, carTypes);
+    }, [gearbox, drive, engine, carTypes, onFilterChange]);
+
 
     return (
         <Container className="mb-5">
@@ -173,7 +181,7 @@ function Filter({ onDatePick, onSelectPickUp, onSelectDropOff, onFilterChange })
                         <Select options={options} onChange={onSelectDropOff} isSearchable={false} placeholder="Drop-off" />
                     </Col>
                 </Row>
-                <button className='filter-car-button' style={{ marginLeft:"0" }} onClick={toggleDropdown}>Filter cars</button>
+                <button className='filter-car-button' style={{ marginLeft: "0" }} onClick={toggleDropdown}>Filter cars</button>
                 {isDropdownOpen && (
                     <div style={{ marginTop: "20px", backgroundColor: "#eee" }}>
                         <Row>

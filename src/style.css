@@ -8,7 +8,7 @@
 /* html, body {
   font-family: 'Asomtavruli', sans-serif;
 } */
-
+                                                                                                
 body {
   display: flex;
   flex-direction: column;
@@ -16,7 +16,6 @@ body {
   overflow-x:hidden;
 
 }
-
 
 /* overlay-y */
 
@@ -325,8 +324,18 @@ html::-webkit-scrollbar-track:hover {
     font-size: 10px!important;
   }
   .th-cars {
-    min-width: 50px!important;
+    min-width: 135px!important;
   }
+  .edit-icon-div{
+    width: 10px!important;
+    margin-right: 10px!important;
+  }
+}
+
+.edit-icon-div{
+  width: 20px;
+  display: inline-block;
+  margin-right: 5px;
 }
 
 .today {
