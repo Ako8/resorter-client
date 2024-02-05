@@ -17,7 +17,7 @@ function Dashboard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/orders/car", {
+        const response = await fetch("https://resorter-server-5yctj.ondigitalocean.app/api/orders/car", {
           method: 'GET',
         });
         if (!response.ok) {

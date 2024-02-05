@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("/rent/cars", {
+        const response = await fetch("https://resorter-server-5yctj.ondigitalocean.app/api/rent/cars", {
           method: 'GET',
         });
         if (!response.ok) {
